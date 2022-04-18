@@ -1,6 +1,5 @@
 import React from 'react'
-import styled, { StyledComponent } from 'styled-components'
-
+import styled from 'styled-components'
 
 
 type Props = {
@@ -20,6 +19,7 @@ background-color: #55acee;
 box-shadow: 0px 5px 0px 0px #3C93D5;
 
 background-color: #55acee;
+background-color: ${props => props.bg === "black" ? "black" : "blue"};
 box-shadow: 0px 5px 0px 0px #3C93D5;
 
 &:active {
