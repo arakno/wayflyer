@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, configure } from 'enzyme';
+import { shallow, render, configure } from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import Button from './Button';
 import toJson from 'enzyme-to-json'
@@ -7,15 +7,22 @@ configure({ adapter: new Adapter() });
 
 
 describe('Test Button component', () => {
-  it('Test click event', () => {
+
+
+  it('Test render', () => {
+    const wrapper = shallow(<Button />)
+    console.log(wrapper.props())
+    console.log(wrapper.debug)
+  });
+  it('Test click event', (props) => {
     // const mockCallBack = jest.fn();
-    // const mockUsersLists = jest.fn(() => props || {});
-    const wrapper = shallow(<Button />, {context: {}, disableLyfecycleMethods: true});
-    // expect(button.find(label.text().toBe('Go'))
+    const mockCallBack = jest.fn(() => props || {});
+    const wrapper = shallow(<Button onClick={mockCallBack} />, {context: {}, disableLyfecycleMethods: true});
+    // expect(wrapper.find('label').text()).toBe('Go')
     // const wrapper = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
     // button.find('button').simulate('click');
     // expect(mockCallBack.mock.calls.length).toEqual(1);
-    console.log(wrapper.props());
+    wrapper.simulate('click') // 2nd click should abort the inFlight request
     console.log(wrapper.debug)
   });
 

@@ -18,8 +18,12 @@ const Header = ({...props}: Props)  => {
   return (
       <header className="App-header">
         <div className="buttons">
-          <Button className="btn" onClick={testLaunch}
-            text="go"
+          <Button 
+            color="#fff"
+            labelText="things"
+            buttonText="Go!"
+            background="red"
+            onClick={testLaunch}
           />
         </div>
         {isEnabled && <Tooltip color={value}/>}
