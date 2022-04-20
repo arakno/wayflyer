@@ -35,9 +35,9 @@ const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
 
     return (
         <>
-            {/* <label>{labelText} */}
+            <label>{props.labelText}
                 <StyledButton {...props}>{props.buttonText}</StyledButton>
-            {/* </label> */}
+            </label>
         </>
     )
 }
