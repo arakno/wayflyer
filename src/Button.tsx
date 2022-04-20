@@ -34,16 +34,14 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
 
 type ButtonProps = {
     text: string,
-    className: string,
     onClick: () => void
 }
 
-const Button:React.FC <ButtonProps> = ({className, text}) => {
+const Button:React.FC <ButtonProps> = ({text}) => {
 
-// const Button = ({text, ...props}: ButtonProps) => {
     return (
         <>
-            <StyledButton {...props} background="red" type="button">{text}</StyledButton>
+            <StyledButton background="red" type="button">{text}</StyledButton>
         </>
     )
 }
