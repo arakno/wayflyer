@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 
 type StyledButtonProps = {
-    background: string,
-    color: string,
-    labelText: string,
-    buttonText: string,
+    background?: string,
+    color?: string,
+    labelText?: string,
+    buttonText?: string,
     onClick: () => void
 }
 
@@ -16,7 +16,7 @@ padding: .5em .8em;
 font-size: 1em;
 text-decoration: none;
 margin: .5em;
-color: ${props => props.color || "palevioletred"};
+color: ${props => props.color || "#fff"};
 background-color: ${props => props.background || "#55acee"};
 box-shadow: 0px 5px 0px 0px #3C93D5;
 
@@ -32,7 +32,6 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
 `
 
 const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
-
     return (
         <>
             <label>{props.labelText}

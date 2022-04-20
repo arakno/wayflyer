@@ -8,19 +8,19 @@ configure({ adapter: new Adapter() });
 
 describe('Test Button component', () => {
 
-
   it('Test render', () => {
     const wrapper = shallow(<Button />)
     console.log(wrapper.props())
     console.log(wrapper.debug)
   });
+
   it('Test click event', (props) => {
     // const mockCallBack = jest.fn();
     const mockCallBack = jest.fn(() => props || {});
     const wrapper = shallow(<Button onClick={mockCallBack} />, {context: {}, disableLyfecycleMethods: true});
     // expect(wrapper.find('label').text()).toBe('Go')
     // const wrapper = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
-    // button.find('button').simulate('click');
+    // wrapper.find('button').simulate('click');
     // expect(mockCallBack.mock.calls.length).toEqual(1);
     wrapper.simulate('click') // 2nd click should abort the inFlight request
     console.log(wrapper.debug)

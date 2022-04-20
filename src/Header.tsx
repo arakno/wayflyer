@@ -19,7 +19,6 @@ const Header = ({...props}: Props)  => {
       <header className="App-header">
         <div className="buttons">
           <Button 
-            color="#fff"
             labelText="things"
             buttonText="Go!"
             background="red"
