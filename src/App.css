@@ -26,30 +26,10 @@
   justify-content: center;
 }
 
-
-
 .App-link {
   color: #61dafb;
 }
 
-.panel-converter {
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.input-gwei { 
-  margin-top: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-items: center;
-  align-items: center;
-}
-.input-gwei, input {
-  border-radius: .5em;
-  padding: .5em .8em;
-  font-size: calc(16px + 2vmin);
-}
 
 
 

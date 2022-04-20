@@ -12,7 +12,7 @@ class App extends Component<{}, State> {
     super(props)
     this.state = {
         value: ''
-      }
+    }
     this.updateMessage = this.updateMessage.bind(this)
   }
   

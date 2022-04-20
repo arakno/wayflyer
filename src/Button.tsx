@@ -2,24 +2,23 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-type Props = {
-    text: string,
-    className: string,
-    onClick: () => void
+type StyledButtonProps = {
+    background: string,
+    color: string,
 }
 
-const StyledButton = styled.button`
+const StyledButton = styled.button<StyledButtonProps>`
 border-radius: .5em;
 padding: .5em .8em;
 font-size: 1em;
 text-decoration: none;
 margin: .5em;
-color: #fff;
+color: ${({ color })=> color };
 background-color: #55acee;
 box-shadow: 0px 5px 0px 0px #3C93D5;
 
 background-color: #55acee;
-background-color: ${props => props.bg === "black" ? "black" : "blue"};
+background-color: ${({ background }) => background };
 box-shadow: 0px 5px 0px 0px #3C93D5;
 
 &:active {
@@ -33,11 +32,18 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
 }
 `
 
+type ButtonProps = {
+    text: string,
+    className: string,
+    onClick: () => void
+}
 
-const Button  = ({text, ...props}: Props)=>{
+const Button:React.FC <ButtonProps> = ({className, text}) => {
+
+// const Button = ({text, ...props}: ButtonProps) => {
     return (
         <>
-            <StyledButton {...props} type="button">{text}</StyledButton>
+            <StyledButton {...props} background="red" type="button">{text}</StyledButton>
         </>
     )
 }
