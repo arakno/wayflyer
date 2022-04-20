@@ -30,13 +30,18 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
     cursor: pointer;
 }
 `
+const StyledLabel = styled.label`
+&:after {
+    content: '🚀'
+}
+`
 
 const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
     return (
         <>
-            <label>{props.labelText}
+            <StyledLabel>{props.labelText}
                 <StyledButton {...props}>{props.buttonText}</StyledButton>
-            </label>
+            </StyledLabel>
         </>
     )
 }

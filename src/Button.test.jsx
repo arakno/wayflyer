@@ -26,6 +26,8 @@ describe('Test Button component', () => {
     console.log(wrapper.debug)
   });
 
+  // Add tests to backgd and color props.
+
   it('matches the snapshot', () => {
     const wrapper = shallow(<Button />, {context: {}, disableLyfecycleMethods: true});
     expect(toJson(wrapper)).toMatchSnapshot()

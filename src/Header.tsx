@@ -19,9 +19,8 @@ const Header = ({...props}: Props)  => {
       <header className="App-header">
         <div className="buttons">
           <Button 
-            labelText="things"
+            labelText="All systems"
             buttonText="Go!"
-            background="red"
             onClick={testLaunch}
           />
         </div>
