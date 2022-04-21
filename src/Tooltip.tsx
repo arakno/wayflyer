@@ -1,6 +1,7 @@
 import React from 'react'
+import { Interface } from 'readline'
 
-type TooltipProps = {
+interface TooltipProps {
     className?: string;
     fontSize?: any;
     color?: string;

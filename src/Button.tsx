@@ -2,12 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-type StyledButtonProps = {
-    background?: string,
-    color?: string,
-    labelText?: string,
-    buttonText?: string,
-    onClick: () => void
+interface StyledButtonProps {
+    background?: string;
+    color?: string;
+    labelText?: string;
+    buttonText?: string;
+    onClick: () => void;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`

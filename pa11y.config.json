@@ -13,5 +13,5 @@
     "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
     "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77"
   ],
-  "urls": "http://localhost:8080"
+  "urls": "http://localhost:3000"
 }
