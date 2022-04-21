@@ -11,14 +11,21 @@ interface StyledButtonProps {
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
-border-radius: .5em;
-padding: .5em .8em;
-font-size: 1em;
-text-decoration: none;
 margin: .5em;
-color: ${props => props.color || "#fff"};
-background-color: ${props => props.background || "#55acee"};
-box-shadow: 0px 5px 0px 0px #3C93D5;
+
+position: absolute;
+width: 133px;
+height: 40px;
+background-color: ${props => props.background || "#fff"};
+border: 2px solid #000;
+box-sizing: border-box;
+
+text-decoration: none;
+color: ${props => props.color || "#000"};
+font-style: normal;
+font-weight: 400;
+font-size: 12px;
+line-height: 1.4;
 
 &:active {
     transform: translate3d(0px, 5px);
@@ -26,10 +33,15 @@ box-shadow: 0px 5px 0px 0px #3C93D5;
     box-shadow: 0px 1px 0px 0px;
 }
 &:hover {
-    background-color: #6FC6FF;
-    cursor: pointer;
+    background: #F5F5F5;
+    border: 2px solid #FF7900;
+}
+&:disabled {
+    color: rgba(0, 0, 0, 0.7);
+    background: #F5F5F5;
 }
 `
+
 const StyledLabel = styled.label`
 &:after {
     content: '🚀'
