@@ -18,6 +18,8 @@ box-sizing: border-box;
 
 text-decoration: none;
 color: ${props => props.color || "#fff"};
+font-family: 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
 font-style: normal;
 font-weight: 400;
 font-size: 12px;

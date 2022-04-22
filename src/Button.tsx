@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { MouseEventHandler } from 'react';
 import styled from 'styled-components'
+import spinner from './img/spinner.svg'
 
 
 interface StyledButtonProps {
@@ -7,7 +8,7 @@ interface StyledButtonProps {
     color?: string;
     labelText?: string;
     buttonText?: string;
-    onClick: () => void;
+    onClick?: MouseEventHandler;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -22,6 +23,8 @@ box-sizing: border-box;
 
 text-decoration: none;
 color: ${props => props.color || "#000"};
+font-family: 'Roboto', 'Oxygen',
+'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
 font-style: normal;
 font-weight: 400;
 font-size: 12px;
@@ -49,10 +52,13 @@ const StyledLabel = styled.label`
 `
 
 const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
+    const isWorking = false
+
     return (
         <>
             <StyledLabel>{props.labelText}
-                <StyledButton {...props}>{props.buttonText}</StyledButton>
+            <StyledButton {...props}>{props.buttonText}</StyledButton>
+            {isWorking && <img alt="working..." src={spinner} />}
             </StyledLabel>
         </>
     )
