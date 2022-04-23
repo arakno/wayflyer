@@ -1,9 +1,10 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from './Button'
 import Tooltip from './Tooltip'
 
 type Props = {
-  value: string,
+  url: string,
+  timeout?: string
 }
 
 const ButtonContainer = ({...props}: Props)  => {
@@ -11,23 +12,31 @@ const ButtonContainer = ({...props}: Props)  => {
   const [allValues, setButtonState] = useState({
     isWorking: false,
     isError: false,
-    launchMessage: 'Ignites the fuel'
+    launchMessage: 'Ignites the fuel',
+    count: 0
   })
 
   const testLaunch = () => {
+    const timeout = Number(props.timeout) || 0 
+    setTimeout(checkSystemsCall, timeout)
+
     setButtonState({
       ...allValues, 
       isWorking: !allValues.isWorking,
-      launchMessage: 'Ignition error'
+      launchMessage: 'Cancel launch',
+      count: allValues.count + 1
      })
+
     
   }
 
-  // const checkSystemsCall = () => {
-  //   const res = fetch('https://httpbin.org/delay/2')
-  //   res.then()
-  //   return res
-  // }
+  const checkSystemsCall = async () => {
+    const url = props.url
+    const data = await fetch(url)
+    const res =  await data.json()
+    console.log(res)
+    return res
+  }
 
   return (
     <>
@@ -40,6 +49,7 @@ const ButtonContainer = ({...props}: Props)  => {
           />
         </div>
         {allValues.isError ? '' : <Tooltip className="tooltip" text={allValues.launchMessage} />}
+        <p>Clicked: {allValues.count}</p>
     </>
   )
 }

@@ -42,7 +42,6 @@ code {
 
 .buttons:hover + .tooltip {
   display: flex;
-
 }
 `
 

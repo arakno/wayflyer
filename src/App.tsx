@@ -26,7 +26,7 @@ class App extends Component<{}, State> {
 
     return (
       <div className="App">
-        <ButtonContainer value={value} />
+        <ButtonContainer url="https://httpbin.org/delay/2" timeout="3000" />
       </div>
     )
   }

@@ -61,8 +61,9 @@ const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
     return (
         <>
             <StyledLabel>{props.labelText}
-                <StyledButton {...props}>{props.buttonText}
-                    {props.isWorking && <img alt="working..." src={spinner} />}
+                <StyledButton {...props}>
+                    {props.buttonText}
+                    {props.isWorking && <img alt="Launching..." src={spinner} />}
                 </StyledButton>
             </StyledLabel>
         </>
