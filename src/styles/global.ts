@@ -28,20 +28,13 @@ const GlobalStyle = createGlobalStyle`
 
   .App {
     text-align: center;
-  }  
-  
-  .App-header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: calc(10px + 2vmin);
+    // font-size: calc(10px + 2vmin);
   }
   
-  .App-link {
-    color: #61dafb;
-  }
-  
-  .App-header .buttons {
+  .buttons {
     flex-direction: row;
     align-items: center;
     justify-content: center;

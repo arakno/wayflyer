@@ -22,7 +22,7 @@ const ButtonContainer = ({...props}: Props)  => {
      })
     
   }
-  
+
   // const checkSystemsCall = () => {
   //   const res = fetch('https://httpbin.org/delay/2')
   //   res.then()
@@ -30,7 +30,7 @@ const ButtonContainer = ({...props}: Props)  => {
   // }
 
   return (
-      <header className="App-header">
+    <>
         <div className="buttons">
           <Button 
             labelText="Press button to "
@@ -40,7 +40,7 @@ const ButtonContainer = ({...props}: Props)  => {
           />
         </div>
         {allValues.isError ? '' : <Tooltip text={allValues.launchMessage} />}
-      </header>
+    </>
   )
 }
 

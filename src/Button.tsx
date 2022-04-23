@@ -49,7 +49,9 @@ line-height: 1.4;
 
 const StyledLabel = styled.label`
 display: flex;
-&:after {
+align-items: center;
+
+&::after {
     content: '🚀'
 }
 `

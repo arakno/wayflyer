@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
-import Header from './ButtonContainer'
+import ButtonContainer from './ButtonContainer'
 
 
 type State = {
@@ -26,8 +25,8 @@ class App extends Component<{}, State> {
     const {value} = this.state
 
     return (
-      <div id="body">
-        <Header value={value} />
+      <div className="App">
+        <ButtonContainer value={value} />
       </div>
     )
   }
