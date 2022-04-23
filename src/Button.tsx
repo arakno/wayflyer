@@ -8,15 +8,17 @@ interface StyledButtonProps {
     color?: string;
     labelText?: string;
     buttonText?: string;
+    isWorking?: boolean;
     onClick?: MouseEventHandler;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
 margin: .5em;
 
-position: absolute;
 width: 133px;
 height: 40px;
+justify-content: center;
+align-items: center;
 background-color: ${props => props.background || "#fff"};
 border: 2px solid #000;
 box-sizing: border-box;
@@ -46,19 +48,19 @@ line-height: 1.4;
 `
 
 const StyledLabel = styled.label`
+display: flex;
 &:after {
     content: '🚀'
 }
 `
 
 const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
-    const isWorking = false
-
     return (
         <>
             <StyledLabel>{props.labelText}
-            <StyledButton {...props}>{props.buttonText}</StyledButton>
-            {isWorking && <img alt="working..." src={spinner} />}
+                <StyledButton {...props}>{props.buttonText}
+                    {props.isWorking && <img alt="working..." src={spinner} />}
+                </StyledButton>
             </StyledLabel>
         </>
     )

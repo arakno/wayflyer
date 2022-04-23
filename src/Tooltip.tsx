@@ -6,10 +6,13 @@ interface StyledTooltipProps {
     fontSize?: any;
     color?: string;
     background?: string;
+    isWorking?: boolean;
 }
 
 const StyledTooltip = styled.span<StyledTooltipProps>`
-position: absolute;
+display: flex;
+justify-content: center;
+align-items: center;
 width: 133px;
 height: 30px;
 background-color: ${props => props.background || "#000"};
