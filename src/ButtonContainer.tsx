@@ -39,7 +39,7 @@ const ButtonContainer = ({...props}: Props)  => {
             onClick={testLaunch}
           />
         </div>
-        {allValues.isError ? '' : <Tooltip text={allValues.launchMessage} />}
+        {allValues.isError ? '' : <Tooltip className="tooltip" text={allValues.launchMessage} />}
     </>
   )
 }

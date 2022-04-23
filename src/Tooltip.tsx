@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface StyledTooltipProps {
+    className?: string;
     text?: string;
     fontSize?: any;
     color?: string;
@@ -10,7 +11,7 @@ interface StyledTooltipProps {
 }
 
 const StyledTooltip = styled.span<StyledTooltipProps>`
-display: flex;
+display: none;
 position: relative;
 justify-content: center;
 align-items: center;

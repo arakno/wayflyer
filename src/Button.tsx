@@ -41,6 +41,7 @@ line-height: 1.4;
     background: #F5F5F5;
     border: 2px solid #FF7900;
 }
+
 &:disabled {
     color: rgba(0, 0, 0, 0.7);
     background: #F5F5F5;
