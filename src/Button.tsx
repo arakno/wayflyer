@@ -14,6 +14,7 @@ interface StyledButtonProps {
 
 const StyledButton = styled.button<StyledButtonProps>`
 margin: .5em;
+position: relative;
 
 width: 133px;
 height: 40px;
@@ -22,7 +23,6 @@ align-items: center;
 background-color: ${props => props.background || "#fff"};
 border: 2px solid #000;
 box-sizing: border-box;
-
 text-decoration: none;
 color: ${props => props.color || "#000"};
 font-family: 'Roboto', 'Oxygen',
