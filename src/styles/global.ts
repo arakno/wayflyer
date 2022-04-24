@@ -40,7 +40,20 @@ code {
   justify-content: center;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+  .spinner {
+    animation: spinner-spin infinite 2s linear;
+  }
+}
 
+@keyframes spinner-spin {
+  from {
+  transform: rotate(0deg);
+  }
+  to {
+  transform: rotate(360deg);
+  }
+}
 
 .buttons:hover + .tooltip {
   display: flex;
