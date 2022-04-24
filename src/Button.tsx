@@ -4,7 +4,7 @@ import spinner from './img/spinner.svg'
 
 
 interface StyledButtonProps {
-    background?: string;
+    className?: string;
     color?: string;
     labelText?: string;
     buttonText?: string;
@@ -20,11 +20,11 @@ width: 133px;
 height: 40px;
 justify-content: center;
 align-items: center;
-background-color: ${props => props.background || "#fff"};
-border: 2px solid #000;
+border: 2px solid ${props => props.isWorking ? "#FF7900" : "#000" };
 box-sizing: border-box;
 text-decoration: none;
-color: ${props => props.color || "#000"};
+color: ${props => props.isWorking ? "#FF7900" : "#000"};
+background-color: ${props => props.isWorking ? "#F5F5F5" : "#fff" };
 font-family: 'Roboto', 'Oxygen',
 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
 font-style: normal;
@@ -32,19 +32,27 @@ font-weight: 400;
 font-size: 12px;
 line-height: 1.4;
 
-&:active {
+&:hover {
     transform: translate3d(0px, 5px);
     -webkit-transform: translate3d(0px, 5px);
-    box-shadow: 0px 1px 0px 0px;
-}
-&:hover {
-    background: #F5F5F5;
-    border: 2px solid #FF7900;
 }
 
 &:disabled {
     color: rgba(0, 0, 0, 0.7);
     background: #F5F5F5;
+}
+
+.error {
+    background-color: #ffff;
+    border: 2px solid #FF0000;
+    color: FF0000;
+}
+
+
+.spinner {
+    position: absolute;
+    right: 6px;
+    top: 6px;
 }
 `
 
@@ -63,7 +71,7 @@ const Button:React.FC<StyledButtonProps> = (props: StyledButtonProps) => {
             <StyledLabel>{props.labelText}
                 <StyledButton {...props}>
                     {props.buttonText}
-                    {props.isWorking && <img alt="Launching..." src={spinner} />}
+                    {props.isWorking && <img className="spinner" alt="Launching..." src={spinner} />}
                 </StyledButton>
             </StyledLabel>
         </>

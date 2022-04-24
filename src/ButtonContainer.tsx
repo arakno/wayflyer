@@ -12,6 +12,7 @@ const ButtonContainer = ({...props}: Props)  => {
   const [allValues, setButtonState] = useState({
     isWorking: false,
     isError: false,
+    isDisabled: false,
     buttonText: "Launch Rocket",
     launchMessage: 'Ignites the fuel',
     count: 0
@@ -35,32 +36,36 @@ const ButtonContainer = ({...props}: Props)  => {
     setButtonState({
       ...allValues, 
       isWorking: true,
+      isError: true,
       launchMessage: 'Ignition error'
      })
     console.log('Ohhhh nooo');
     console.log(err);
   }
 
-
   const initiateLaunch = async (): Promise<any> => {
     const url = props.url
     const data = await fetch(url).catch(cancelLaunch)
-    const res =  await data
-    console.log(res)
-    return res
+    console.log(data)
+    return data
   }
 
   return (
     <>
         <div className="buttons">
           <Button 
+            className={allValues.isError  ? 'error' : ''} 
             labelText="Press button to "
-            isWorking={allValues.isWorking}
-            onClick={testLaunch}
+            isWorking={allValues.isWorking}            
             buttonText={allValues.buttonText}
+            onClick={testLaunch}
           />
         </div>
-        {allValues.isError ? '' : <Tooltip className="tooltip" text={allValues.launchMessage} />}
+        {allValues.isDisabled ? '' : <Tooltip 
+                                      className={`tooltip ${allValues.isError  ? 'error' : ''}`} 
+                                      text={allValues.launchMessage} 
+                                      isWorking={allValues.isWorking}
+                                    />}
         <p>Clicked: {allValues.count}</p>
     </>
   )

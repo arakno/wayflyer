@@ -6,8 +6,8 @@ interface StyledTooltipProps {
     text?: string;
     fontSize?: any;
     color?: string;
-    background?: string;
     isWorking?: boolean;
+    isError?:boolean;
 }
 
 const StyledTooltip = styled.span<StyledTooltipProps>`
@@ -17,8 +17,8 @@ justify-content: center;
 align-items: center;
 width: 133px;
 height: 30px;
-background-color: ${props => props.background || "#000"};
-border: 2px solid #000;
+
+border: 2px solid ${props => props.isWorking ? "#FF7900" : "#000" };
 box-sizing: border-box;
 font-style: normal;
 font-weight: 700;
@@ -26,6 +26,12 @@ font-size: 12px;
 line-height: 1.4;
 text-decoration: none;
 color: ${props => props.color || "#fff"};
+background-color: ${props => props.isWorking ? "#FF7900" : "#000" };
+
+.error {
+    background-color: #FF0000;
+    border: 2px solid #FF0000;
+}
 
 &:before,
 &:after {
