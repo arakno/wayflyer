@@ -6,7 +6,7 @@ import Button from './Button';
 import toJson from 'enzyme-to-json'
 configure({ adapter: new Adapter() });
 
-let wrapper
+let button, wrapper
 
 // beforeEach(() => {
 //   wrapper = shallow(<Button />)
@@ -32,38 +32,39 @@ const props = {
 
 
 beforeEach(() => {
-  wrapper = shallow(<Button {...props} />)
+  button = shallow(<Button {...props} />)
+  wrapper = shallow(<ButtonContainer {...props} />)
 })
 
 describe('Test ButtonContainer', () => {
 
   it('Test render Button', () => {
-    console.log(wrapper.debug)
+    console.log(button.debug)
   });
 
   it('it should render text', () => {
-    expect(wrapper.text()).toBe('Launch Rocket')
+    expect(button.text()).toBe('Launch Rocket')
   });
 
 
   // it('Test click event', (props) => {
   //   // const mockCallBack = jest.fn();
   //   const mockCallBack = jest.fn(() => props || {});
-  //   const wrapper = shallow(<Button onClick={mockCallBack} />, {context: {}, disableLyfecycleMethods: true});
-  //   // expect(wrapper.find('label').text()).toBe('Go')
-  //   // const wrapper = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
-  //   // wrapper.find('button').simulate('click');
+  //   const button = shallow(<Button onClick={mockCallBack} />, {context: {}, disableLyfecycleMethods: true});
+  //   // expect(button.find('label').text()).toBe('Go')
+  //   // const button = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
+  //   // button.find('button').simulate('click');
   //   // expect(mockCallBack.mock.calls.length).toEqual(1);
-  //   wrapper.simulate('click') // 2nd click should abort the inFlight request
-  //   console.log(wrapper.debug)
+  //   button.simulate('click') // 2nd click should abort the inFlight request
+  //   console.log(button.debug)
   // });
 
   // Add tests to backgd and color props.
 
   it('matches the snapshot', () => {
-    const wrapper = shallow(<Button />, {context: {}, disableLyfecycleMethods: true});
-    expect(toJson(wrapper)).toMatchSnapshot()
-    console.log(wrapper.debug)
+    const button = shallow(<Button />, {context: {}, disableLyfecycleMethods: true});
+    expect(toJson(button)).toMatchSnapshot()
+    console.log(button.debug)
   })
 
 });

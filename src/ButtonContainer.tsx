@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import Button from './Button'
 import Tooltip from './Tooltip'
 
@@ -15,18 +15,18 @@ const ButtonContainer = ({...props}: Props)  => {
     isDisabled: false,
     buttonText: "Launch Rocket",
     tooltipMessage: 'Ignites the fuel',
-    count: 0
   })
 
   const testLaunch = () => {
 
+    const ms = Number(props.timeout) || 0 
+    const timeout = setTimeout(initiateLaunch, ms)
+
     if(allValues.isWorking) {
-      cancelLaunch('User cancelled')
+      cancelLaunch('Ignition error')
+      clearTimeout(timeout)
       return
     }
-
-    const timeout = Number(props.timeout) || 0 
-    setTimeout(initiateLaunch, timeout)
 
     setButtonState({
       ...allValues, 
@@ -37,22 +37,25 @@ const ButtonContainer = ({...props}: Props)  => {
     
   }
 
+  const initiateLaunch = async (): Promise<any> => {
+    const data = await fetch(props.url).catch(cancelLaunch)
+    console.log(data)
+    return data
+  }
+
   const cancelLaunch = (err: string) => {
     setButtonState({
       ...allValues, 
       isWorking: false,
       isError: true,
       buttonText: 'Launch Rocket',
-      tooltipMessage: 'Ignition error',
+      tooltipMessage: err,
      })
+
     console.log(err);
   }
 
-  const initiateLaunch = async (): Promise<any> => {
-    const data = await fetch(props.url).catch(cancelLaunch)
-    console.log(data)
-    return data
-  }
+
 
   return (
     <>
