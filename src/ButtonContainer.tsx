@@ -14,11 +14,17 @@ const ButtonContainer = ({...props}: Props)  => {
     isError: false,
     isDisabled: false,
     buttonText: "Launch Rocket",
-    launchMessage: 'Ignites the fuel',
+    tooltipMessage: 'Ignites the fuel',
     count: 0
   })
 
   const testLaunch = () => {
+
+    if(allValues.isWorking) {
+      cancelLaunch('User cancelled')
+      return
+    }
+
     const timeout = Number(props.timeout) || 0 
     setTimeout(initiateLaunch, timeout)
 
@@ -26,26 +32,24 @@ const ButtonContainer = ({...props}: Props)  => {
       ...allValues, 
       isWorking: !allValues.isWorking,
       buttonText: 'Launching',
-      launchMessage: 'Cancel launch',
-      count: allValues.count + 1
+      tooltipMessage: 'Cancel launch',
      })
     
   }
 
-  const cancelLaunch = (err: any) => {
+  const cancelLaunch = (err: string) => {
     setButtonState({
       ...allValues, 
-      isWorking: true,
+      isWorking: false,
       isError: true,
-      launchMessage: 'Ignition error'
+      buttonText: 'Launch Rocket',
+      tooltipMessage: 'Ignition error',
      })
-    console.log('Ohhhh nooo');
     console.log(err);
   }
 
   const initiateLaunch = async (): Promise<any> => {
-    const url = props.url
-    const data = await fetch(url).catch(cancelLaunch)
+    const data = await fetch(props.url).catch(cancelLaunch)
     console.log(data)
     return data
   }
@@ -56,17 +60,19 @@ const ButtonContainer = ({...props}: Props)  => {
           <Button 
             className={allValues.isError  ? 'error' : ''} 
             labelText="Press button to "
-            isWorking={allValues.isWorking}            
+            isWorking={allValues.isWorking}  
+            isError={allValues.isError}          
             buttonText={allValues.buttonText}
             onClick={testLaunch}
           />
         </div>
-        {allValues.isDisabled ? '' : <Tooltip 
-                                      className={`tooltip ${allValues.isError  ? 'error' : ''}`} 
-                                      text={allValues.launchMessage} 
-                                      isWorking={allValues.isWorking}
-                                    />}
-        <p>Clicked: {allValues.count}</p>
+        {allValues.isDisabled ? '' : 
+          <Tooltip 
+            className={`tooltip ${allValues.isError  ? 'error' : ''}`} 
+            text={allValues.tooltipMessage} 
+            isWorking={allValues.isWorking}
+            isError={allValues.isError}
+          />}
     </>
   )
 }

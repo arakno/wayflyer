@@ -4,8 +4,6 @@ import styled from 'styled-components'
 interface StyledTooltipProps {
     className?: string;
     text?: string;
-    fontSize?: any;
-    color?: string;
     isWorking?: boolean;
     isError?:boolean;
 }
@@ -17,7 +15,6 @@ justify-content: center;
 align-items: center;
 width: 133px;
 height: 30px;
-
 border: 2px solid ${props => props.isWorking ? "#FF7900" : "#000" };
 box-sizing: border-box;
 font-style: normal;
@@ -25,13 +22,29 @@ font-weight: 700;
 font-size: 12px;
 line-height: 1.4;
 text-decoration: none;
-color: ${props => props.color || "#fff"};
+color: #fff;
 background-color: ${props => props.isWorking ? "#FF7900" : "#000" };
 
-.error {
-    background-color: #FF0000;
-    border: 2px solid #FF0000;
+${props => {
+    if (props.isWorking) { 
+        return `
+        background-color: #FF7900;
+        border: 2px solid #FF7900;
+        `
+    } else if (props.isError) {
+        return `
+        background-color: #FF0000;
+        border: 2px solid #FF0000;
+        `
+    } else {
+        return `
+        background-color: #000;
+        border: 2px solid #000;
+        `
+    }
 }
+}
+
 
 &:before,
 &:after {

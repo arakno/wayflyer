@@ -5,10 +5,10 @@ import spinner from './img/spinner.svg'
 
 interface StyledButtonProps {
     className?: string;
-    color?: string;
     labelText?: string;
     buttonText?: string;
     isWorking?: boolean;
+    isError?: boolean;
     onClick?: MouseEventHandler;
 }
 
@@ -20,11 +20,30 @@ width: 133px;
 height: 40px;
 justify-content: center;
 align-items: center;
-border: 2px solid ${props => props.isWorking ? "#FF7900" : "#000" };
 box-sizing: border-box;
 text-decoration: none;
-color: ${props => props.isWorking ? "#FF7900" : "#000"};
-background-color: ${props => props.isWorking ? "#F5F5F5" : "#fff" };
+${props => {
+    if (props.isWorking) { 
+        return `
+        color: #FF7900;
+        background-color:  #F5F5F5;
+        border: 2px solid #FF7900;
+        `
+    } else if (props.isError) {
+        return `
+        color: #FF0000;
+        background-color: #fff;
+        border: 2px solid #FF0000;
+        `
+    } else {
+        return `
+        color: #000;
+        background-color: #fff;
+        border: 2px solid #000;
+        `
+    }
+}
+}
 font-family: 'Roboto', 'Oxygen',
 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue';
 font-style: normal;
@@ -40,12 +59,6 @@ line-height: 1.4;
 &:disabled {
     color: rgba(0, 0, 0, 0.7);
     background: #F5F5F5;
-}
-
-.error {
-    background-color: #ffff;
-    border: 2px solid #FF0000;
-    color: FF0000;
 }
 
 
