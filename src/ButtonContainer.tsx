@@ -64,7 +64,7 @@ const ButtonContainer = ({...props}: Props)  => {
             isError={allValues.isError}          
             buttonText={allValues.buttonText}
             onClick={testLaunch}
-          />
+          >{allValues.buttonText}</Button>
         </div>
         {allValues.isDisabled ? '' : 
           <Tooltip 
