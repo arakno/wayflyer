@@ -25,7 +25,7 @@ Build
 yarn build
 ```
 
-# WAYFLYER
+# WAYFLYER FE TEST
 
 You have been tasked with building a re-usable button for the Wayflyer mission control dashboard. 
 The button needs to make a GET request to a mission control server to ignite the rocket fuel and launch the Wayflyer rocket ship. However, if the rocket fuel takes too long to ignite then something is not right and the request should be abandoned. Also, launching rockets is scary, if the user gets cold feet they need to be able to abort a launch request before it completes.

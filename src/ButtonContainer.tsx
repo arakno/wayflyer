@@ -9,43 +9,63 @@ type Props = {
 
 const ButtonContainer = ({...props}: Props)  => {
 
-  const [allValues, setButtonState] = useState({
+  const ms: number = Number(props.timeout) || 0 
+  
+  const defaultState = {
     isWorking: false,
     isError: false,
     isDisabled: false,
     buttonText: "Launch Rocket",
     tooltipMessage: 'Ignites the fuel',
-  })
+  }
+
+  const [buttonValues, setButtonState] = useState(defaultState)
 
   const testLaunch = () => {
 
-    const ms = Number(props.timeout) || 0 
-    const timeout = setTimeout(initiateLaunch, ms)
-
-    if(allValues.isWorking) {
+    if(buttonValues.isWorking) {
       cancelLaunch('Ignition error')
-      clearTimeout(timeout)
       return
     }
 
     setButtonState({
-      ...allValues, 
-      isWorking: !allValues.isWorking,
+      ...buttonValues, 
+      isWorking: !buttonValues.isWorking,
       buttonText: 'Launching',
       tooltipMessage: 'Cancel launch',
      })
-    
+
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        cancelLaunch('Ignition error')
+      }, ms)
+  
+      initiateLaunch()
+        .then(res => {
+          clearTimeout(timer)
+          console.log(res)
+          setButtonState({
+            ...buttonValues, 
+            ...defaultState
+           })
+          resolve(res)
+        })
+        .catch(reason => {
+          clearTimeout(timer)
+          reject(reason)
+        })
+    })
+  
   }
 
   const initiateLaunch = async (): Promise<any> => {
     const data = await fetch(props.url).catch(cancelLaunch)
-    console.log(data)
     return data
   }
 
   const cancelLaunch = (err: string) => {
     setButtonState({
-      ...allValues, 
+      ...buttonValues, 
       isWorking: false,
       isError: true,
       buttonText: 'Launch Rocket',
@@ -55,26 +75,24 @@ const ButtonContainer = ({...props}: Props)  => {
     console.log(err);
   }
 
-
-
   return (
     <>
         <div className="buttons">
           <Button 
-            className={allValues.isError  ? 'error' : ''} 
+            className={buttonValues.isError  ? 'error' : ''} 
             labelText="Press button to "
-            isWorking={allValues.isWorking}  
-            isError={allValues.isError}          
-            buttonText={allValues.buttonText}
+            isWorking={buttonValues.isWorking}  
+            isError={buttonValues.isError}          
+            buttonText={buttonValues.buttonText}
             onClick={testLaunch}
-          >{allValues.buttonText}</Button>
+          >{buttonValues.buttonText}</Button>
         </div>
-        {allValues.isDisabled ? '' : 
+        {buttonValues.isDisabled ? '' : 
           <Tooltip 
-            className={`tooltip ${allValues.isError  ? 'error' : ''}`} 
-            text={allValues.tooltipMessage} 
-            isWorking={allValues.isWorking}
-            isError={allValues.isError}
+            className={`tooltip ${buttonValues.isError  ? 'error' : ''}`} 
+            text={buttonValues.tooltipMessage} 
+            isWorking={buttonValues.isWorking}
+            isError={buttonValues.isError}
           />}
     </>
   )
