@@ -23,48 +23,47 @@ font-size: 12px;
 line-height: 1.4;
 text-decoration: none;
 color: #fff;
-background-color: ${props => props.isWorking ? "#FF7900" : "#000" };
 
 ${props => {
     if (props.isWorking) { 
         return `
         background-color: #FF7900;
         border: 2px solid #FF7900;
+        &:after {
+            border-color: #FF7900 transparent;
+        }
         `
     } else if (props.isError) {
         return `
         background-color: #FF0000;
         border: 2px solid #FF0000;
+        &:after {
+            border-color: #FF0000 transparent;
+        }
         `
     } else {
         return `
         background-color: #000;
         border: 2px solid #000;
+        &:after {
+            border-color: #000 transparent;
+        }
         `
     }
 }
 }
 
-
-&:before,
 &:after {
-    content: "\0020";
-    display:block;
-    position:absolute;
-    top:-20px;  /* Offset top the height of the pointer's border-width */
-    left:20px;
-    z-index:2;
+    content: '';
+    position: absolute;
+    display: block;
     width: 0;
-    height: 0;
-    overflow:hidden;
-    border: solid 20px transparent;
-    border-top: 0;
-    border-bottom-color:#FFF;
-}
-&:before {
-    top:-30px; /* Offset of pointer border-width + bubble border-width */
-    z-index:1;
-    border-bottom-color:rgba(0,0,0,0.095);
+    z-index: 1;
+    border-style: solid;
+    border-width: 0 10px 12px;
+    top: -12px;
+    left: 50%;
+    margin-left: -12px;
 }
 `
 

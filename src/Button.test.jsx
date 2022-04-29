@@ -1,5 +1,6 @@
 import React from 'react';
-import { component, shallow, render, mount, configure } from 'enzyme';
+import { component, shallow, mount, configure } from 'enzyme';
+import {screen, fireEvent, render} from '@testing-library/react';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import ButtonContainer from './ButtonContainer';
 import Button from './Button';
@@ -47,17 +48,21 @@ describe('Test ButtonContainer', () => {
   });
 
 
-  // it('Test click event', (props) => {
-  //   // const mockCallBack = jest.fn();
-  //   const mockCallBack = jest.fn(() => props || {});
-  //   const button = shallow(<Button onClick={mockCallBack} />, {context: {}, disableLyfecycleMethods: true});
-  //   // expect(button.find('label').text()).toBe('Go')
-  //   // const button = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
-  //   // button.find('button').simulate('click');
-  //   // expect(mockCallBack.mock.calls.length).toEqual(1);
-  //   button.simulate('click') // 2nd click should abort the inFlight request
-  //   console.log(button.debug)
-  // });
+  it('Test click event', (props) => {
+    // const mockCallBack = jest.fn();
+    const mockCallBack = jest.fn(() => props || {});
+    const button = shallow(<Button onClick={mockCallBack} />);
+    const buttonSubmit = screen.getByText('Launch Rocket');
+
+    // expect(button.find('label').text()).toBe('Go')
+    // const button = shallow((<Button onClick={mockCallBack}>Ok!</Button>));
+    // button.find('button').simulate('click');
+    // expect(mockCallBack.mock.calls.length).toEqual(1);
+    // button.simulate('click') // 2nd click should abort the inFlight request
+    fireEvent.click(buttonSubmit);
+    expect(button.text()).toBe('Launching')
+    console.log(button.debug)
+  });
 
   // Add tests to backgd and color props.
 

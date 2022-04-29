@@ -43,20 +43,34 @@ const ButtonContainer = ({...props}: Props)  => {
       initiateLaunch()
         .then(res => {
           clearTimeout(timer)
-          console.log(res)
           setButtonState({
             ...buttonValues, 
             ...defaultState
            })
+          console.log(res)
           resolve(res)
         })
-        .catch(reason => {
+        .catch(err => {
           clearTimeout(timer)
-          reject(reason)
+          reject(err)
         })
     })
   
   }
+
+
+  // async function fetchWithTimeout(resource, options = {}) {
+  //   const { timeout = 8000 } = options;
+    
+  //   const controller = new AbortController();
+  //   const id = setTimeout(() => controller.abort(), timeout);
+  //   const response = await fetch(resource, {
+  //     ...options,
+  //     signal: controller.signal  
+  //   });
+  //   clearTimeout(id);
+  //   return response;
+  // }
 
   const initiateLaunch = async (): Promise<any> => {
     const data = await fetch(props.url).catch(cancelLaunch)
