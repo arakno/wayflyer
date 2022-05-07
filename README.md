@@ -65,3 +65,4 @@ Ensure each of the requirements are met and and that each is covered by tests.
 - fix tests to use shallow components methods, etc
 - Remove CRA and port it to my custom webpack bundler
 - Fix pa11y (needs pa11y CI most definitely)
+- Try the request interceptor
