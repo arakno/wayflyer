@@ -9,19 +9,6 @@ configure({ adapter: new Adapter() });
 
 let button, wrapper
 
-// beforeEach(() => {
-//   wrapper = shallow(<Button />)
-// })
-
-// describe('Test Button component', () => {
-
-//   it('Test render Button', () => {
-//     // console.log(wrapper.props())
-//     console.log(wrapper.debug)
-//   });
-
-
-// }
 
 const props = {
   className: 'error',
@@ -50,8 +37,10 @@ describe('Test ButtonContainer', () => {
 
   it('Test click event', (props) => {
     // const mockCallBack = jest.fn();
+    // console.log(wrapper.props())
     const mockCallBack = jest.fn(() => props || {});
     const button = shallow(<Button onClick={mockCallBack} />);
+    // const btInstance = button.instance()
     const buttonSubmit = screen.getByText('Launch Rocket');
 
     // expect(button.find('label').text()).toBe('Go')

@@ -60,3 +60,8 @@ Ensure each of the requirements are met and and that each is covered by tests.
 - We expect to be able to run `yarn test` and see the tests run green
 - Bonus points for code re-usability and/or using Storybook
 - Your code should be submitted as a git repository
+
+# TODO:
+- fix tests to use shallow components methods, etc
+- Remove CRA and port it to my custom webpack bundler
+- Fix pa11y (needs pa11y CI most definitely)
