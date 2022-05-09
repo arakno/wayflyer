@@ -61,13 +61,11 @@ Ensure each of the requirements are met and and that each is covered by tests.
 - Bonus points for code re-usability and/or using Storybook
 - Your code should be submitted as a git repository
 
-# Feedback
-The solution was incomplete with commented out code, unused imports and failing type checks. 
-Test coverage was insufficient and the implementation missed some fundaments of managing network requests. 
-The button does not timeout as defined or respond to network request completion.
-
 # TODO:
 - fix tests to use shallow components methods, etc
 - Remove CRA and port it to my custom webpack bundler
 - Fix pa11y (needs pa11y CI most definitely)
 - Try the request interceptor
+- Fix failing type checks. 
+- Increase Test coverage(managing network requests). 
+- The button does not timeout as defined or respond to network request completion.
